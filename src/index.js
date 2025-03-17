@@ -5,6 +5,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Añadir una ruta básica para verificar que el servidor está funcionando
+app.get('/', (req, res) => {
+    res.send('API funcionando correctamente');
+});
+
 const users = [
     {
         email: "test@test.com",
@@ -167,7 +172,10 @@ app.post('/api/registro', (req, res) => {
     });
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+const PORT = process.env.PORT || 10000;
+console.log(`Intentando iniciar servidor en puerto: ${PORT}`);
+console.log(`Entorno: ${process.env.NODE_ENV}`);
+
+app.listen(PORT, '0.0.0.0', () => {
     console.log(`Servidor corriendo en puerto ${PORT}`);
 }); 
